@@ -7,10 +7,20 @@ ModelImporter:
     100002: Cylinder.003
     100004: Cylinder.004
     100006: //RootNode
+    100008: Door
+    100010: DoorSocket
+    100012: Pillars
+    100014: Stairs
+    100016: Wall
     400000: Cylinder.001
     400002: Cylinder.003
     400004: Cylinder.004
     400006: //RootNode
+    400008: Door
+    400010: DoorSocket
+    400012: Pillars
+    400014: Stairs
+    400016: Wall
     2100000: mat_Stone
     2100002: mat_Glow
     2100004: mat_Glow.001
@@ -18,12 +28,27 @@ ModelImporter:
     2300000: Cylinder.001
     2300002: Cylinder.003
     2300004: Cylinder.004
+    2300006: Door
+    2300008: DoorSocket
+    2300010: Pillars
+    2300012: Stairs
+    2300014: Wall
     3300000: Cylinder.001
     3300002: Cylinder.003
     3300004: Cylinder.004
+    3300006: Door
+    3300008: DoorSocket
+    3300010: Pillars
+    3300012: Stairs
+    3300014: Wall
     4300000: Cylinder.001
     4300002: Cylinder.003
     4300004: Cylinder.004
+    4300006: DoorSocket
+    4300008: Stairs
+    4300010: Door
+    4300012: Wall
+    4300014: Pillars
   externalObjects:
   - first:
       type: UnityEngine:Material
@@ -75,7 +100,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 1
+    globalScale: 0.8
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
