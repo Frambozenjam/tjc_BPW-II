@@ -32,20 +32,24 @@ public class Script_Player : MonoBehaviour
     //References
     public GameObject obj_CarryingParent;
     public GameObject obj_CameraParent;
+    Rigidbody comp_Rigidbody;
 
     //Changing variables
+    Vector3 v3_Velocity;
     int i_SelectedSlot = 1;
     bool b_HoldingObject = false;
     GameObject obj_Interactable;
     bool b_HoldingObjectisColliding = false;
-    float f_CameraRotation_X = 0f;
-    float f_CameraRotation_Y = 0f;
+    float f_CameraRotation_X;
+    float f_CameraRotation_Y;
     bool b_MenuOpen = false;
     bool b_Sprinting = false;
 
     // Start is called before the first frame update
     void Start()
     {
+        //Set character controller reference
+        comp_Rigidbody = GetComponent<Rigidbody>();
         //Hide cursor
         Function_CursorMode("Locked");
         //set camera rotation values
@@ -59,13 +63,18 @@ public class Script_Player : MonoBehaviour
     void Update()
     {
         Function_CheckInputs();
+        Function_InputMovement();
         Function_Camera();
-        Function_Gravity();
 
         if(b_HoldingObject == true)
         {
             Function_UpdateCarriedObject();
         }
+    }
+
+    void FixedUpdate()
+    {
+        Function_ApplyMovement();
     }
 
     //Check for inputs
@@ -75,12 +84,17 @@ public class Script_Player : MonoBehaviour
         if (Input.GetKeyDown(Control_LeftClick)) { Function_LeftClick(); }
         if (Input.GetKeyDown(Control_RightClick)) { Function_RightClick(); }
         if (Input.GetKeyDown(Control_MiddleClick)) { Function_MiddleClick(); }
-        //Input for movement
-        if (Input.GetKey(Control_Forward)) { Function_Movement("Forward"); }
-        if (Input.GetKey(Control_Left)) { Function_Movement("Left"); }
-        if (Input.GetKey(Control_Backward)) { Function_Movement("Backward"); }
-        if (Input.GetKey(Control_Right)) { Function_Movement("Right"); }
-        if (Input.GetKeyDown(KeyCode.Space)) { Function_Movement("Jump");  }
+
+        //old
+        {
+            //Input for movement
+            //if (Input.GetKey(Control_Forward)) { Function_InputMovement("Forward"); }
+            //if (Input.GetKey(Control_Left)) { Function_InputMovement("Left"); }
+            //if (Input.GetKey(Control_Backward)) { Function_InputMovement("Backward"); }
+            //if (Input.GetKey(Control_Right)) { Function_InputMovement("Right"); }
+            //if (Input.GetKeyDown(KeyCode.Space)) { Function_InputMovement("Jump");  }
+        }
+
         if (Input.GetKey(KeyCode.LeftShift)) { b_Sprinting = true; } else { b_Sprinting = false; }
         //UI
         if (Input.GetKeyDown(KeyCode.Escape)) { Function_ToggleMenu(); }
@@ -125,8 +139,8 @@ public class Script_Player : MonoBehaviour
         Debug.Log("Middle clicked.");
     }
 
-    //Movement
-    void Function_Movement(string s_Direction)
+    //apply movement speed to velocity from inputs
+    void Function_InputMovement()
     {
         float f_Speed = f_MovementSpeed;
         if (b_Sprinting == true)
@@ -138,32 +152,46 @@ public class Script_Player : MonoBehaviour
             f_Speed = f_MovementSpeed;
         }
 
-        if(s_Direction == "Forward")
+        Vector3 v3_Forward = Input.GetAxisRaw("Vertical") * transform.forward;
+        Vector3 v3_Right = Input.GetAxisRaw("Horizontal") * transform.right;
+        v3_Velocity = (v3_Right + v3_Forward).normalized * f_Speed;
+
+        //old movement
         {
-            transform.Translate(Vector3.forward * Time.deltaTime * f_Speed);
+            //if(s_Direction == "Forward")
+            //{
+            //    comp_Rigidbody.velocity = (transform.forward * f_MovementSpeed * Time.deltaTime);
+            //}
+            //if (s_Direction == "Backward")
+            //{
+            //    comp_Rigidbody.velocity = (-transform.forward * f_MovementSpeed * Time.deltaTime);
+            //}
+            //if (s_Direction == "Right")
+            //{
+            //    comp_Rigidbody.velocity = (transform.right * f_MovementSpeed * Time.deltaTime);
+            //}
+            //if (s_Direction == "Left")
+            //{
+            //    comp_Rigidbody.velocity = (-transform.right * f_MovementSpeed * Time.deltaTime);
+            //}
         }
-        if(s_Direction == "Left")
+
+        //jump
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            transform.Translate(Vector3.right * Time.deltaTime * -f_Speed);
-        }
-        if(s_Direction == "Backward")
-        {
-            transform.Translate(Vector3.forward * Time.deltaTime * -f_Speed);
-        }
-        if(s_Direction == "Right")
-        {
-            transform.Translate(Vector3.right * Time.deltaTime * f_Speed);
-        }
-        if(s_Direction == "Jump")
-        {
-            GetComponent<Rigidbody>().AddForce(Vector3.up * f_JumpStrength);
+            comp_Rigidbody.AddForce(Vector3.up * f_JumpStrength);
         }
     }
 
     //Gravity
-    void Function_Gravity()
+    void Function_ApplyMovement()
     {
-        GetComponent<Rigidbody>().AddForce(Vector3.up * f_Gravity);
+        if(v3_Velocity != Vector3.zero)
+        {
+            comp_Rigidbody.MovePosition(comp_Rigidbody.position + v3_Velocity * Time.fixedDeltaTime);
+        }
+        //reset velocity to disable sliding
+        comp_Rigidbody.velocity = new Vector3(0, comp_Rigidbody.velocity.y, 0);
     }
 
     //Camera
@@ -219,37 +247,40 @@ public class Script_Player : MonoBehaviour
     {
         obj_Interactable.GetComponent<Rigidbody>().velocity = Vector3.zero;
         obj_Interactable.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
-        if (obj_Interactable)
-        {
 
-        }
         //Keep position at handle
-        if(obj_Interactable.transform.localPosition.x != 0)
+        obj_Interactable.transform.position = obj_CarryingParent.transform.position;
+        obj_Interactable.transform.rotation = Quaternion.Euler(-90, obj_CarryingParent.transform.localRotation.y, obj_CarryingParent.transform.localRotation.z);
+
+        //old
         {
-            if(obj_Interactable.transform.localPosition.x > 0.6f)
-            {
-                obj_Interactable.transform.localPosition += new Vector3( -0.1f, 0, 0);
-            }
-            else if(obj_Interactable.transform.localPosition.x < -0.6f)
-            {
-                obj_Interactable.transform.localPosition += new Vector3(0.1f, 0, 0);
-            }
-            if (obj_Interactable.transform.localPosition.y > 0.6f)
-            {
-                obj_Interactable.transform.localPosition += new Vector3(0, -0.1f, 0);
-            }
-            else if (obj_Interactable.transform.localPosition.y < -0.6f)
-            {
-                obj_Interactable.transform.localPosition += new Vector3(0, 0.1f, 0);
-            }
-            if (obj_Interactable.transform.localPosition.z > 0.6f)
-            {
-                obj_Interactable.transform.localPosition += new Vector3(0, 0, -0.1f);
-            }
-            else if (obj_Interactable.transform.localPosition.z < -0.6f)
-            {
-                obj_Interactable.transform.localPosition += new Vector3(0, 0, 0.1f);
-            }
+            //if(obj_Interactable.transform.localPosition.x != 0)
+            //{
+            //    if(obj_Interactable.transform.localPosition.x > 0.6f)
+            //    {
+            //        obj_Interactable.transform.localPosition += new Vector3( -0.1f, 0, 0);
+            //    }
+            //    else if(obj_Interactable.transform.localPosition.x < -0.6f)
+            //    {
+            //        obj_Interactable.transform.localPosition += new Vector3(0.1f, 0, 0);
+            //    }
+            //    if (obj_Interactable.transform.localPosition.y > 0.6f)
+            //    {
+            //        obj_Interactable.transform.localPosition += new Vector3(0, -0.1f, 0);
+            //    }
+            //    else if (obj_Interactable.transform.localPosition.y < -0.6f)
+            //    {
+            //        obj_Interactable.transform.localPosition += new Vector3(0, 0.1f, 0);
+            //    }
+            //    if (obj_Interactable.transform.localPosition.z > 0.6f)
+            //    {
+            //        obj_Interactable.transform.localPosition += new Vector3(0, 0, -0.1f);
+            //    }
+            //    else if (obj_Interactable.transform.localPosition.z < -0.6f)
+            //    {
+            //        obj_Interactable.transform.localPosition += new Vector3(0, 0, 0.1f);
+            //    }
+            //}
         }
     }
 

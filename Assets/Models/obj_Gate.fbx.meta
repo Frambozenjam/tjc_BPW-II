@@ -25,6 +25,7 @@ ModelImporter:
     2100002: mat_Glow
     2100004: mat_Glow.001
     2100006: mat_Glow.002
+    2100008: mat_DarkStone
     2300000: Cylinder.001
     2300002: Cylinder.003
     2300004: Cylinder.004
@@ -50,6 +51,11 @@ ModelImporter:
     4300012: Wall
     4300014: Pillars
   externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_DarkStone
+    second: {fileID: 2100000, guid: b1116f87605e46c49b8b64302b83f418, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule

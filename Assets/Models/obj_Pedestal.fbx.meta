@@ -4,12 +4,22 @@ ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
     100000: //RootNode
+    100002: geo_Key
+    100004: geo_Pedestal
     400000: //RootNode
+    400002: geo_Key
+    400004: geo_Pedestal
     2100000: mat_DarkStone
     2100002: mat_Glow
+    2100004: mat_Stone
     2300000: //RootNode
+    2300002: geo_Key
+    2300004: geo_Pedestal
     3300000: //RootNode
+    3300002: geo_Key
+    3300004: geo_Pedestal
     4300000: geo_Pedestal
+    4300002: geo_Key
   externalObjects:
   - first:
       type: UnityEngine:Material

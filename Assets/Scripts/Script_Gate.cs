@@ -51,28 +51,28 @@ public class Script_Gate : MonoBehaviour
         {
             b_OrangeActive = true;
             mat_Array = obj_Stone2.GetComponent<Renderer>().materials;
-            mat_Array[1] = mat_OrangeOn;
+            mat_Array[2] = mat_OrangeOn;
             obj_Stone2.GetComponent<Renderer>().materials = mat_Array;
         }
         else
         {
             b_OrangeActive = false;
             mat_Array = obj_Stone2.GetComponent<Renderer>().materials;
-            mat_Array[1] = mat_OrangeOff;
+            mat_Array[2] = mat_OrangeOff;
             obj_Stone2.GetComponent<Renderer>().materials = mat_Array;
         }
         if(obj_PedestalRed.GetComponent<Script_Pedestal>().b_isActivated == true)
         {
             b_RedActive = true;
             mat_Array = obj_Stone2.GetComponent<Renderer>().materials;
-            mat_Array[2] = mat_RedOn;
+            mat_Array[3] = mat_RedOn;
             obj_Stone2.GetComponent<Renderer>().materials = mat_Array;
         }
         else
         {
             b_RedActive = false;
             mat_Array = obj_Stone2.GetComponent<Renderer>().materials;
-            mat_Array[2] = mat_RedOff;
+            mat_Array[3] = mat_RedOff;
             obj_Stone2.GetComponent<Renderer>().materials = mat_Array;
         }
     }
