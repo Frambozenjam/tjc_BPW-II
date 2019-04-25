@@ -12,26 +12,25 @@ public class Script_Pedestal : MonoBehaviour
 
     //References
     Material[] mat_Array;
+    Script_ManagerAudio ref_Audio;
+
+    private void Start()
+    {
+        ref_Audio = GameObject.Find("ManagerAudio").GetComponent<Script_ManagerAudio>();
+    }
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.name == obj_RequiredKey.name)
+        if (other.name == obj_RequiredKey.name)
         {
             b_isActivated = true;
             mat_Array = GetComponent<Renderer>().materials;
             mat_Array[1] = mat_Activated;
             GetComponent<Renderer>().materials = mat_Array;
 
+            if (ref_Audio != null) ref_Audio.Function_PlayAudio("s_PedestalActivate");
         }
     }
-
-    //private void OnTriggerStay(Collider other)
-    //{
-    //    if (other == obj_RequiredKey)
-    //    {
-    //        b_isActivated = true;
-    //    }
-    //}
 
     private void OnTriggerExit(Collider other)
     {

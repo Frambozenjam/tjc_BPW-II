@@ -18,10 +18,6 @@ public class Script_Player : MonoBehaviour
 
     //Controls
     string Control_Interact = "e";
-    string Control_Forward = "w";
-    string Control_Left = "a";
-    string Control_Backward = "s";
-    string Control_Right = "d";
     string Control_SelectSlot_01 = "1";
     string Control_SelectSlot_02 = "2";
     string Control_SelectSlot_03 = "3";
@@ -39,7 +35,6 @@ public class Script_Player : MonoBehaviour
     int i_SelectedSlot = 1;
     bool b_HoldingObject = false;
     GameObject obj_Interactable;
-    bool b_HoldingObjectisColliding = false;
     float f_CameraRotation_X;
     float f_CameraRotation_Y;
     bool b_MenuOpen = false;

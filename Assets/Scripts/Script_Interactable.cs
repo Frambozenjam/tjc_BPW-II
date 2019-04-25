@@ -4,10 +4,6 @@ using UnityEngine;
 
 public class Script_Interactable : MonoBehaviour
 {
-
-    [SerializeField] float f_ThrowForce = 500f;
-    [SerializeField] float f_CarryDistance;
-
     Vector3 v_ObjectPosition;
 
     public GameObject obj_Interactable;

@@ -30,7 +30,12 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: mat_Glow
-    second: {fileID: 2100000, guid: 9da6b5c8dbd476f48be7ba6713345236, type: 2}
+    second: {fileID: 2100000, guid: 7bbe418ce7095ea47a7f35219d1b92ff, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_Stone
+    second: {fileID: 2100000, guid: d393c09fd3b544d4db860a2f98b5dd23, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

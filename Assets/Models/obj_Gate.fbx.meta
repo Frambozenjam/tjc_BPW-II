@@ -12,6 +12,9 @@ ModelImporter:
     100012: Pillars
     100014: Stairs
     100016: Wall
+    100018: Floor
+    100020: Pillars.004
+    100022: Wall.001
     400000: Cylinder.001
     400002: Cylinder.003
     400004: Cylinder.004
@@ -21,6 +24,9 @@ ModelImporter:
     400012: Pillars
     400014: Stairs
     400016: Wall
+    400018: Floor
+    400020: Pillars.004
+    400022: Wall.001
     2100000: mat_Stone
     2100002: mat_Glow
     2100004: mat_Glow.001
@@ -34,6 +40,9 @@ ModelImporter:
     2300010: Pillars
     2300012: Stairs
     2300014: Wall
+    2300016: Floor
+    2300018: Pillars.004
+    2300020: Wall.001
     3300000: Cylinder.001
     3300002: Cylinder.003
     3300004: Cylinder.004
@@ -42,6 +51,9 @@ ModelImporter:
     3300010: Pillars
     3300012: Stairs
     3300014: Wall
+    3300016: Floor
+    3300018: Pillars.004
+    3300020: Wall.001
     4300000: Cylinder.001
     4300002: Cylinder.003
     4300004: Cylinder.004
@@ -50,6 +62,15 @@ ModelImporter:
     4300010: Door
     4300012: Wall
     4300014: Pillars
+    4300016: Pillars.004
+    4300018: Floor
+    4300020: Wall.001
+    7400000: a_OpenGate
+    7400002: a_RotateGate
+    7400004: Door|a_OpenGate
+    7400006: Door|a_RotateGate
+    9500000: //RootNode
+    11100000: //RootNode
   externalObjects:
   - first:
       type: UnityEngine:Material
@@ -85,7 +106,7 @@ ModelImporter:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
     resampleCurves: 1
-    optimizeGameObjects: 0
+    optimizeGameObjects: 1
     motionNodeName: 
     rigImportErrors: 
     rigImportWarnings: 
@@ -95,14 +116,133 @@ ModelImporter:
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
     importConstraints: 0
-    animationCompression: 1
+    animationCompression: 3
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
     extraUserProperties: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: a_OpenGate
+      takeName: a_OpenGate
+      firstFrame: 0
+      lastFrame: 180
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events:
+      - time: 0.065573774
+        functionName: Function_StopAudio
+        data: s_RollingStone
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.06842105
+        functionName: Function_PlayAudio
+        data: s_Thud
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.07130153
+        functionName: Function_PlayAudio
+        data: s_RollingStone2
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.30915126
+        functionName: Function_StopAudio
+        data: s_RollingStone2
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.3123197
+        functionName: Function_PlayAudio
+        data: s_Thud2
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.31555104
+        functionName: Function_PlayAudio
+        data: s_RollingStone3
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.8627974
+        functionName: Function_StopAudio
+        data: s_RollingStone3
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.8663854
+        functionName: Function_PlayAudio
+        data: s_Thud3
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: a_RotateGate
+      takeName: a_RotateGate
+      firstFrame: 0
+      lastFrame: 90
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events:
+      - time: 0
+        functionName: Function_PlayAudio
+        data: s_RollingStone
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     isReadable: 1
   meshes:
     lODScreenPercentages: []
@@ -127,8 +267,8 @@ ModelImporter:
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
     useFileScale: 1
-    previousCalculatedGlobalScale: 1
-    hasPreviousCalculatedGlobalScale: 0
+    previousCalculatedGlobalScale: 0.008
+    hasPreviousCalculatedGlobalScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
@@ -152,10 +292,10 @@ ModelImporter:
     feetSpacing: 0
     rootMotionBoneName: 
     hasTranslationDoF: 0
-    hasExtraRoot: 0
+    hasExtraRoot: 1
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  animationType: 2
   humanoidOversampling: 1
   additionalBone: 0
   userData: 

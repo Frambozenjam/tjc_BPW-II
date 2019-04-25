@@ -15,7 +15,7 @@ public class Script_Gate : MonoBehaviour
     public GameObject obj_PedestalOrange;
     public GameObject obj_PedestalRed;
     public GameObject obj_Stone1;
-    public GameObject obj_Stone2;
+    public GameObject obj_Door;
 
     Material[] mat_Array;
 
@@ -23,6 +23,7 @@ public class Script_Gate : MonoBehaviour
     bool b_BlueActive = false;
     bool b_OrangeActive = false;
     bool b_RedActive = false;
+    bool b_OpenedDoor = false;
 
 
     // Update is called once per frame
@@ -37,43 +38,51 @@ public class Script_Gate : MonoBehaviour
         {
             b_BlueActive = true;
             mat_Array = obj_Stone1.GetComponent<Renderer>().materials;
-            mat_Array[1] = mat_BlueOn;
+            mat_Array[2] = mat_BlueOn;
             obj_Stone1.GetComponent<Renderer>().materials = mat_Array;
         }
         else
         {
             b_BlueActive = false;
             mat_Array = obj_Stone1.GetComponent<Renderer>().materials;
-            mat_Array[1] = mat_BlueOff;
+            mat_Array[2] = mat_BlueOff;
             obj_Stone1.GetComponent<Renderer>().materials = mat_Array;
         }
         if(obj_PedestalOrange.GetComponent<Script_Pedestal>().b_isActivated == true)
         {
             b_OrangeActive = true;
-            mat_Array = obj_Stone2.GetComponent<Renderer>().materials;
+            mat_Array = obj_Door.GetComponent<Renderer>().materials;
             mat_Array[2] = mat_OrangeOn;
-            obj_Stone2.GetComponent<Renderer>().materials = mat_Array;
+            obj_Door.GetComponent<Renderer>().materials = mat_Array;
         }
         else
         {
             b_OrangeActive = false;
-            mat_Array = obj_Stone2.GetComponent<Renderer>().materials;
+            mat_Array = obj_Door.GetComponent<Renderer>().materials;
             mat_Array[2] = mat_OrangeOff;
-            obj_Stone2.GetComponent<Renderer>().materials = mat_Array;
+            obj_Door.GetComponent<Renderer>().materials = mat_Array;
         }
         if(obj_PedestalRed.GetComponent<Script_Pedestal>().b_isActivated == true)
         {
             b_RedActive = true;
-            mat_Array = obj_Stone2.GetComponent<Renderer>().materials;
+            mat_Array = obj_Door.GetComponent<Renderer>().materials;
             mat_Array[3] = mat_RedOn;
-            obj_Stone2.GetComponent<Renderer>().materials = mat_Array;
+            obj_Door.GetComponent<Renderer>().materials = mat_Array;
         }
         else
         {
             b_RedActive = false;
-            mat_Array = obj_Stone2.GetComponent<Renderer>().materials;
+            mat_Array = obj_Door.GetComponent<Renderer>().materials;
             mat_Array[3] = mat_RedOff;
-            obj_Stone2.GetComponent<Renderer>().materials = mat_Array;
+            obj_Door.GetComponent<Renderer>().materials = mat_Array;
+        }
+
+        if(b_BlueActive == true && b_OrangeActive == true && b_RedActive == true && b_OpenedDoor == false)
+        {
+            GetComponent<Animator>().Play ("Rotating");
+            b_OpenedDoor = true;
+            GameObject ref_ManagerAudio = GameObject.Find("ManagerAudio");
+            if (ref_ManagerAudio != null) ref_ManagerAudio.GetComponent<Script_ManagerAudio>().Function_PlayAudio("s_Magic");
         }
     }
 }
